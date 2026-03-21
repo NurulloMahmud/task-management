@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow — Board</title>
+    <link rel="stylesheet" href="{% static 'front/css/style.css' %}">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="nav-logo">TaskFlow</h1>
+        <div class="nav-right">
+            <span id="nav-user"></span>
+            <button id="logout-btn" class="btn btn-outline-sm">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Board -->
+    <main class="board">
+        <div class="column" data-status="todo">
+            <div class="column-header">
+                <h2>To Do</h2>
+                <span class="task-count" id="count-todo">0</span>
+            </div>
+            <div class="task-list" id="list-todo"></div>
+            <button class="btn btn-add" data-status="todo">+ Add Task</button>
+        </div>
+
+        <div class="column" data-status="in_progress">
+            <div class="column-header">
+                <h2>In Progress</h2>
+                <span class="task-count" id="count-in_progress">0</span>
+            </div>
+            <div class="task-list" id="list-in_progress"></div>
+            <button class="btn btn-add" data-status="in_progress">+ Add Task</button>
+        </div>
+
+        <div class="column" data-status="done">
+            <div class="column-header">
+                <h2>Done</h2>
+                <span class="task-count" id="count-done">0</span>
+            </div>
+            <div class="task-list" id="list-done"></div>
+            <button class="btn btn-add" data-status="done">+ Add Task</button>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="task-modal" class="modal-overlay" style="display:none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">New Task</h3>
+                <button id="modal-close" class="modal-close">&times;</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label for="task-title-input">Title</label>
+                    <input type="text" id="task-title-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-desc-input">Description</label>
+                    <textarea id="task-desc-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-status-input">Status</label>
+                    <select id="task-status-input">
+                        <option value="todo">To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="task-delete-btn" class="btn btn-danger"
+                        style="display:none;">Delete</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <div id="task-error" class="form-error"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'front/js/board.js' %}"></script>
+</body>
+
+</html>
